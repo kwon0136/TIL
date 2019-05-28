@@ -207,7 +207,7 @@ https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjZ9LWdib3iAhVGxYsBH
     t(top), b(bottom), l(left), r(right)
     ```
 
-* * container
+  * container: 스크린 크기에 따른 화면의 폭의 한계를 자동으로 조절
   * grid
   * components: 완성품을 제공(대표적으로 버튼, forms) // <https://startbootstrap.com/>
 * github pages // <https://pages.github.com/>

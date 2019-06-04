@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'utilities',
     'pages',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -55,8 +56,8 @@ ROOT_URLCONF = 'intro.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
+        'DIRS': [os.path.join(BASE_DIR, 'intro', 'templates')], # join: list -> str/ intro>templates에서 찾는다
+        'APP_DIRS': True, # default:True: templates directory에서 html 파일을 찾는다
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',

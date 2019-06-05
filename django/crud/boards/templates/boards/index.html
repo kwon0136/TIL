@@ -1,0 +1,30 @@
+{% extends 'boards/base.html' %}
+
+{% block body %}
+<h1 class="text-center">Boards</h1>  <!-- class="text-center": 가운데 정렬 -->
+
+<body>
+<div class="contain">
+        <table class="table">
+            <thread>
+            <tr>
+                <td><B>id</B></td>
+                <td><B>title</B></td>
+                <td><B>content</B></td>
+            </tr>
+            </thread>
+            <tbody>
+            {% for i in board %}
+            <tr>
+                <td>{{ i.id }}</td>
+                <td>{{ i.title }}</td>
+                <td>{{ i.contents }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+</div>
+</body>
+<hr>
+<a href="/boards/new/">[글 작성]</a>
+{% endblock %}

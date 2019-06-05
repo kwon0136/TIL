@@ -1,0 +1,13 @@
+{% extends 'boards/base.html' %}
+
+{% block body %}
+<h1 class="text-center">NEW</h1>
+<hr>
+<form action="/boards/create/" > <!-- method default: GET -->
+    <label for="title">Title</label> <!-- input 태그 라벨링 -->
+    <input type="text" name="title" id="title"><br> <!-- label tag의 for와 input tag의 id 일치시켜야함 -->
+    <label for="content">Content</label><br>
+    <textarea name="content" id="content" cols="30" rows="10"></textarea> <!-- input tag보다 큰 창 -->
+    <input type="submit" value="Submit">
+</form>
+{% endblock %}

@@ -7,8 +7,25 @@
     <p>글 내용: {{ board.contents }}</p>
     <p>작성시간: {{ board.created_at }}</p>
     <p>수정시간: {{ board.updated_at }}</p>
+    <hr>
 
-    <a href="/boards/{{ board.pk }}/delete/">[글 삭제]</a><br>
-    <a href="/boards/{{ board.pk }}/edit/">[글 수정]</a><br>
-    <a href="/boards/">[메인페이지]</a>
+    <form action="{% url 'boards:comments_create' board.pk %}" method="POST">
+        {% csrf_token %}
+        댓글: <input type="text" name="content">
+        <input type="submit" value="댓글작성">
+    </form>
+
+    <hr>
+        <p><b>댓글 목록</b></p>
+        {% for comment in comments %}
+            <li>{{ comment.content }}</li>
+        {% endfor %}
+    <hr>
+
+    <form action="{% url 'boards:delete' board.pk %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="[글 삭제]">
+    </form>
+    <a href="{% url 'boards:edit' board.pk %}">[글 수정]</a><br>
+    <a href="{% url 'boards:index' %}">[메인페이지]</a>
 {% endblock %}

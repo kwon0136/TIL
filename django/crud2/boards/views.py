@@ -25,7 +25,6 @@ def detail(request, pk):
 def delete(request, pk):
     board = Board.objects.get(pk=pk)
     board.delete()
-    board.save()
     return redirect('/boards/')
 
 def edit(request, pk):

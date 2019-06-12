@@ -1,0 +1,12 @@
+{% extends 'boards/base.html' %}
+
+{% block body %}
+<h1 class="text-center">Comments Edit</h1>
+    <form action="{% url 'boards:comments_update' comment.board.pk comment.pk %}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="content" value="{{ comment.content }}">
+        <input type="submit" value="댓글수정">
+    </form>
+
+
+{% endblock %}

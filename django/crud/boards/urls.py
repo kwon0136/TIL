@@ -13,6 +13,8 @@ urlpatterns = [
     path('<int:board_pk>/edit/', views.edit, name='edit'),
     #path('<int:pk>/update/', views.update, name='update'),
     path('<int:board_pk>/comments/', views.comments_create, name='comments_create'),
+    path('<int:board_pk>/comments/<int:comment_pk>/edit/', views.comments_edit, name='comments_edit'),
+    path('<int:board_pk>/comments/<int:comment_pk>/delete/', views.comments_delete, name='comments_delete'),
 ]
 
 # 세번재 인자로 별명을 부여한다.

@@ -1,0 +1,34 @@
+{% extends 'boards/base.html' %}
+
+{% block body %}
+<h1 class="text-center">DETAIL</h1>
+<hr>
+    글 제목: {{ board.title }}<br>
+    글 내용: {{ board.content }}<br>
+    작성 시각: {{ board.created_at }}<br>
+    수정 시각: {{ board.updated_at }}<br>
+<hr>
+    <p><b>댓글</b>
+        <form action="{% url 'boards:comments_create' board.pk %}" method="POST">
+        {% csrf_token %}
+            <input type="text" name="content">
+            <input type="submit" value="댓글작성">
+        </form>
+        {% for comment in comments %}
+            {{ comment.content }}<br>
+            <a href="{% url 'boards:comments_update' board.pk comment.pk %}">댓글수정</a><br>
+            <form action="{% url 'boards:comments_delete' board.pk comment.pk %}" method="POST">
+                {% csrf_token %}
+                <input type="submit" value="댓글삭제">
+            </form>
+        {% endfor %}
+    </p>
+<hr>
+    <a href="{% url 'boards:index' %}">[메인페이지]</a><br>
+    <a href="{% url 'boards:update' board.pk %}">[글 수정]</a><br>
+    <form action="{% url 'boards:delete' board.pk %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="글 삭제">
+    </form>
+<hr>
+{% endblock %}

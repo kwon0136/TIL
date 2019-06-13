@@ -1,7 +1,10 @@
 {% extends 'boards/base.html' %}
 
+{% load static %}
+
 {% block body %}
 <h1 class="text-center">Boards</h1>  <!-- class="text-center": 가운데 정렬 -->
+<img src="{% static 'boards/images/DOG.jpg' %}" alt="">
 <hr>
 {% for board in boards %}
     글 번호:<p>{{ board.pk }}</p><br>

@@ -1,8 +1,19 @@
 from django.db import models
+from imagekit.models import ProcessedImageField, ProcessedImageField
+from imagekit.processors import Thumbnail
+
+def board_image_path(instance, filename):
+    return f'boards/{instance.pk}번글/images/{filename}'
 
 class Board(models.Model): # Board class는 models.Model을 상속받는다
     title = models.CharField(max_length=10) # 최대 글자수 10 / TextField사용 --> 무제한
     contents = models.TextField()
+    image = ProcessedImageField(
+        upload_to=board_image_path,  # 저장위치
+        processors=[Thumbnail(200, 300)],
+        format='JPEG',
+        options={'quality': 90},  # 원본이미지의 90프로 해상도
+    )
     created_at = models.DateTimeField(auto_now_add=True) # auto_now_add=True: 최초 그 값을 insert할 때 한번만 생성
     updated_at = models.DateTimeField(auto_now=True) # 게시글 수정시간 변경
 

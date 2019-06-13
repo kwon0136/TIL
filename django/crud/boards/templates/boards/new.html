@@ -4,12 +4,14 @@
 <h1 class="text-center">NEW</h1>
 <hr>
 <!-- <form action="{# url 'boards:create' #}" method="POST"> -->
-<form action="" method="POST">
+<form action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     <label for="title">Title</label> <!-- input 태그 라벨링 -->
     <input type="text" name="title" id="title"><br> <!-- label tag의 for와 input tag의 id 일치시켜야함 -->
     <label for="content">Content</label><br>
     <textarea name="content" id="content" cols="30" rows="10"></textarea> <!-- input tag보다 큰 창 -->
+    <label for="image">Image</label><br>
+    <input type="file" name="image" id="image" accept="image/*"><br>
     <input type="submit" value="Submit">
 </form>
 <a href="{% url 'boards:index' %}">[메인 페이지]</a>

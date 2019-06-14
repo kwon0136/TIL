@@ -1,0 +1,50 @@
+{% extends 'login/base.html' %}
+
+<style>
+    .checkbox-wrapper input[type="checkbox"] {
+      position: absolute;
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      z-index: 1;
+    }
+    input[type="checkbox"]{
+        position: relative;
+        top: -50px
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        z-index: 1;
+    }
+
+</style>
+{% block body %}
+<form action="" id="form1"method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+<input type="file" name="img_files" accept = "image/*" multiple><br>
+<input type="submit">
+</form>
+<div class="container">
+<form action="" method="POST">
+    {% csrf_token %}
+
+    {% for p in photos %}
+        <div style="border: 1px; float: left; width: 25%;">
+        <div class="checkbox-wrapper">
+            <input type="checkbox"  name="cbox" value={{p.pk}}>
+            <span class="checkmark"></span>
+            
+        </div>
+            <img src = "{{p.photo.url}}" width="300" height="300"><br>
+
+        </div>
+    {% endfor %}
+<hr>
+    <button type = "submit" class="btn btn-primary"  name="print">사진 인화</button>
+    <button type = "submit" class="btn btn-primary"  name="sms">SMS전송</button>
+</form>
+</div>
+
+{% endblock %}

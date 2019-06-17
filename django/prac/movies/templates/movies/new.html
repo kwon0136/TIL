@@ -1,0 +1,28 @@
+{% extends 'movies/base.html' %}
+
+{% block body %}
+<h1 class="text-center">NEW</h1>
+<hr>
+
+<form action="{% url 'movies:new' %}" method="POST">
+    {% csrf_token %}
+    <label for="title">Title</label><br>
+    <input type="text" name="title" id="title"><br>
+    <label for="title_origin">Title_Origin</label><br>
+    <input type="text" name="title_origin" id="title_origin"><br>
+    <label for="vote_count">Vote_Count</label><br>
+    <input type="number" name="vote_count" id="vote_count"><br>
+    <label for="open_date">Open_Date</label><br>
+    <input type="date" name="open_date" id="open_date"><br>
+    <label for="genre">Genre</label><br>
+    <input type="text" name="genre" id="genre"><br>
+    <label for="score">Score</label><br>
+    <input type="number" min="0" max="10" step="0.5" name="score" id="score"><br>
+    <label for="poster_url">Poster_Url</label><br>
+    <input type="text" name="poster_url" id="poster_url"><br>
+    <label for="description">Description</label><br>
+    <textarea name="description" id="description" cols="30" rows="10"></textarea><br>
+    <input type="submit" value="Submit">
+</form>
+
+{% endblock %}

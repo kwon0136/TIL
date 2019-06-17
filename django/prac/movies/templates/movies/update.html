@@ -1,0 +1,27 @@
+{% extends 'movies/base.html' %}
+
+{% block body %}
+<h1 class="text center">EDIT</h1>
+<hr>
+<form action="{% url 'movies:update' movie.pk %}" method="POST">
+    {% csrf_token %}
+    <label for="title">Title</label><br>
+    <input type="text" name="title" id="title" value="{{ movie.title }}"><br>
+    <label for="title_origin">Title_Origin</label><br>
+    <input type="text" name="title_origin" id="title_origin" value="{{ movie.title_origin }}"><br>
+    <label for="vote_count">Vote_Count</label><br>
+    <input type="number" name="vote_count" id="vote_count" value="{{ movie.vote_count }}"><br>
+    <label for="open_date">Open_Date</label><br>
+    <input type="date" name="open_date" id="open_date" value="{{ movie.open_date }}"><br>
+    <label for="genre">Genre</label><br>
+    <input type="text" name="genre" id="genre" value="{{ movie.genre }}"><br>
+    <label for="score">Score</label><br>
+    <input type="number" name="score" id="score" value="{{ movie.score }}"><br>
+    <label for="poster_url">Poster_Url</label><br>
+    <input type="text" name="poster_url" id="poster_url" value="{{ movie.poster_url }}"><br>
+    <label for="description">Description</label><br>
+    <textarea name="description" id="description" cols="30" rows="10">{{ movie.description }}</textarea><br>
+    <input type="submit" value="Submit">
+</form>
+
+{% endblock %}

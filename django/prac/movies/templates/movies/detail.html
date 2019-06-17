@@ -1,0 +1,26 @@
+{% extends 'movies/base.html' %}
+{% load static %}
+
+{% block body %}
+<h1 class="text-center">DETAIL</h1>
+<hr>
+<img src="{{ movie.poster_url }}" width="200" height="300" alt="poster">
+<hr>
+<p>
+    <b>Title: </b>{{ movie.title }}<br>
+    <b>Title_Origin: </b>{{ movie.origin }}<br>
+    <b>Vote_Count: </b>{{ movie.vote_count }}<br>
+    <b>Open_Date: </b>{{ movie.open_date }}<br>
+    <b>Genre: </b>{{ movie.genre }}<br>
+    <b>Score: </b>{{ movie.score }}<br>
+    <b>Description: </b>{{ movie.description }}<br>
+</p>
+<hr>
+    <a href="{% url 'movies:index' %}">[목록]</a><br>
+    <a href="{% url 'movies:update' movie.pk %}">[수정]</a><br>
+    <form action="{% url 'movies:delete' movie.pk %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="[삭제]">
+    </form>
+
+{% endblock %}

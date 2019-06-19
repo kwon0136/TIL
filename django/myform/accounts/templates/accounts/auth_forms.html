@@ -1,0 +1,31 @@
+{% extends 'boards/base.html' %}
+{% load bootstrap4 %}
+
+{% block body %}
+{% if request.resolver_match.url_name == 'change_password' %}
+    <h1 class="text-center">비밀번호 변경</h1>
+{% elif request.resolver_match.url_name == 'edit' %}
+    <h1 class="text-center">회원정보 수정</h1>
+{% elif request.resolver_match.url_name == 'login' %}
+    <h1 class="text-center">로그인</h1>
+{% else %}
+    <h1 class="text-center">회원 가입</h1>
+{% endif %}
+<hr>
+<form action="" method="POST">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+
+    {% buttons %}
+        {% if request.resolver_match.url_name == 'change_password' %}
+            <button type="submit" class="btn btn_primary">비밀번호 변경</button>
+        {% elif request.resolver_match.url_name == 'edit' %}
+            <button type="submit" class="btn btn_primary">회원정보 수정</button>
+        {% elif request.resolver_match.url_name == 'login' %}
+            <button type="submit" class="btn btn_primary">로그인</button>
+        {% else %}
+            <button type="submit" class="btn btn_primary">회원가입</button>
+        {% endif %}
+    {% endbuttons %}
+</form>
+{% endblock %}

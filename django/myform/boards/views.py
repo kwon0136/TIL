@@ -88,3 +88,15 @@ def comments_delete(request, board_pk, comment_pk):
     else:
         comment.delete()
         return redirect('boards:detail', board_pk)
+
+@login_required
+def like(request, board_pk):
+    board = get_object_or_404(Board, pk=board_pk)
+    user = request.user
+
+    if request.user in board.like_users.all():
+    # if board.like_users.filter(pk=user.pk).exists: # 최소 하나의 값이 들어가 있는지 확인/ 게시글에 좋아요를 누른 유저가 존재한다면
+        board.like_users.remove(request.user) # 좋아요 또 누르면 좋아요 취소(like_user에서 제거)
+    else:
+        board.like_users.add(request.user) # 게시글에 좋아요를 누른 유저 존재X --> 좋아요 누르면 like_users에 추가
+    return redirect('boards:index')

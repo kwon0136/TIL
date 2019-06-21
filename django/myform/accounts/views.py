@@ -2,21 +2,21 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UserChangeForm, PasswordChangeForm
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
-from  .forms import UserCustomChangeForm
+from  .forms import UserCustomChangeForm, UserCustomCreationForm
 from django.contrib.auth import update_session_auth_hash
 
 def signup(request):
     if request.user.is_authenticated:
         return redirect('boards:index')
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = UserCustomCreationForm(request.POST)
         if form.is_valid():
             #form.save()
             user = form.save()
             auth_login(request, user)
             return redirect('boards:index')
     else:
-        form = UserCreationForm()
+        form = UserCustomCreationForm()
     context = {'form':form}
     return render(request, 'accounts/auth_forms.html', context)
 
@@ -31,7 +31,7 @@ def login(request):
     else:
         form = AuthenticationForm()
     context = {'form':form}
-    return render(request, 'accounts/auth_forms.html', context)
+    return render(request, 'accounts/login2.html', context)
 
 def logout(request):
     if request.method == 'POST':
